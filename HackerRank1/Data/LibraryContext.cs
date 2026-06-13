@@ -1,27 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace LibraryService.WebAPI.Data
 {
-    public class LibraryContext : DbContext
-    {
-        public LibraryContext(DbContextOptions<LibraryContext> options)
-            : base(options)
-        { }
-
-        public DbSet<Library> Libraries { get; set; }
-        public DbSet<Book> Books { get; set; }
-    }
-
+    // ── Entidades ─────────────────────────────────────────────
     public class Book
     {
         [Key]
         public int Id { get; set; }
-
         public string Name { get; set; }
-
         public string Category { get; set; }
-
         public int LibraryId { get; set; }
         public virtual Library Library { get; set; }
     }
@@ -30,9 +18,31 @@ namespace LibraryService.WebAPI.Data
     {
         [Key]
         public int Id { get; set; }
-
         public string Name { get; set; }
-
         public string Location { get; set; }
+    }
+
+    public class Abonado
+    {
+        [Key]
+        public int Id { get; set; }
+        public string NombreCompleto { get; set; }
+        public string Cedula { get; set; }
+        public string NumeroMedidor { get; set; }
+        public string Direccion { get; set; }
+        public string Telefono { get; set; }
+        public string Estado { get; set; }
+    }
+
+    // ── DbContext ──────────────────────────────────────────────
+    public class LibraryContext : DbContext
+    {
+        public LibraryContext(DbContextOptions<LibraryContext> options)
+            : base(options)
+        { }
+
+        public DbSet<Library> Libraries { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Abonado> Abonados { get; set; }
     }
 }

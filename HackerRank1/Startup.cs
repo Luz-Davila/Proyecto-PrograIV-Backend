@@ -70,7 +70,7 @@ namespace LibraryService.WebAPI
 
                     policy.WithOrigins(
                         "http://localhost:5173",
-                        "https://musical-sunflower-bd2b8a.netlify.app"
+                        "https://whimsical-kheer-ba4bbc.netlify.app"
                         )
                             .AllowAnyMethod()
                             .AllowAnyHeader()
@@ -84,7 +84,9 @@ namespace LibraryService.WebAPI
             services.AddTransient<ILibrariesService,  LibrariesService>();
             services.AddTransient<IBooksService,  BooksService>();
 
-            services.AddDbContext<LibraryContext>(options => options.UseInMemoryDatabase("librarydb"));
+            //services.AddDbContext<LibraryContext>(options => options.UseInMemoryDatabase("librarydb"));
+            services.AddDbContext<LibraryContext>(options =>
+     options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
 
             // Add Swagger generation
