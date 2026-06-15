@@ -70,7 +70,8 @@ namespace LibraryService.WebAPI
 
                     policy.WithOrigins(
                         "http://localhost:5173",
-                        "https://whimsical-kheer-ba4bbc.netlify.app"
+                        "https://whimsical-kheer-ba4bbc.netlify.app",
+                        "https://tourmaline-torte-d670cf.netlify.app"
                         )
                             .AllowAnyMethod()
                             .AllowAnyHeader()
