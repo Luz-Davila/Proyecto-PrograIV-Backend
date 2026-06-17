@@ -37,7 +37,6 @@ namespace LibraryService.WebAPI
                                 ?? throw new InvalidOperationException("Invalid JWT Settings");
 
             // 2. Registro de DI SERVICIOSS
-
             services.AddSingleton(jwtSettings);
             services.AddScoped<IAuthenticationService, AuthenticationService>();
 
@@ -62,12 +61,11 @@ namespace LibraryService.WebAPI
                 });
 
             // 4.Configurar Autorizacion
-         services.AddAuthorization();
+            services.AddAuthorization();
 
             services.AddCors(options =>
             {
                 options.AddPolicy("DevCors", policy =>
-
                     policy.WithOrigins(
                         "http://localhost:5173",
                         "https://glistening-dusk-794985.netlify.app",
@@ -78,16 +76,18 @@ namespace LibraryService.WebAPI
                             .AllowCredentials()
                 );
             });
-           
 
+            // Add support for Dependency Injection for internal services (BooksService, LibrariesService and InventarioService)
+            services.AddTransient<ILibrariesService, LibrariesService>();
+            services.AddTransient<IBooksService, BooksService>();
 
-            // Add support for Dependency Injection for internal services (BooksService and LibrariesService)
-            services.AddTransient<ILibrariesService,  LibrariesService>();
-            services.AddTransient<IBooksService,  BooksService>();
+            // ¡ESTA ES LA LÍNEA QUE AGREGAMOS!:
+            services.AddScoped<InventarioService>();
 
-            //services.AddDbContext<LibraryContext>(options => options.UseInMemoryDatabase("librarydb"));
+            // Configuración del DbContext para PostgreSQL / Supabase
             services.AddDbContext<LibraryContext>(options =>
-     options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllers();
 
             // Add Swagger generation
