@@ -121,6 +121,7 @@ namespace LibraryService.WebAPI
             app.UseRouting();
             app.UseCors("DevCors");
 
+     
             app.UseAuthentication();
             app.UseAuthorization();
 

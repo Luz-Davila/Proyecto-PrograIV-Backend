@@ -34,6 +34,16 @@ namespace LibraryService.WebAPI.Data
         public string Estado { get; set; }
     }
 
+    public class Averia
+    {
+        [Key]
+        public int Id { get; set; }
+        public string Nombre { get; set; } = string.Empty;
+        public string TipoAveria { get; set; } = string.Empty;
+        public string Descripcion { get; set; } = string.Empty;
+        public string Estado { get; set; } = "Pendiente";
+    }
+
     // ── DbContext ──────────────────────────────────────────────
     public class LibraryContext : DbContext
     {
@@ -44,5 +54,8 @@ namespace LibraryService.WebAPI.Data
         public DbSet<Library> Libraries { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Abonado> Abonados { get; set; }
+
+        // ── LÍNEA AGREGADA: Registramos tu tabla de Averías ──
+        public DbSet<Averia> Averias { get; set; }
     }
 }
