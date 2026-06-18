@@ -2,6 +2,7 @@
 using LibraryService.WebAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HackerRank1.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    partial class LibraryContextModelSnapshot : ModelSnapshot
+    [Migration("20260617173957_AgregarTablaInventario")]
+    partial class AgregarTablaInventario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,35 +100,6 @@ namespace HackerRank1.Migrations
                     b.ToTable("Abonados");
                 });
 
-            modelBuilder.Entity("LibraryService.WebAPI.Data.Averia", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Estado")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("TipoAveria")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Averias");
-                });
-
             modelBuilder.Entity("LibraryService.WebAPI.Data.Book", b =>
                 {
                     b.Property<int>("Id")
@@ -172,35 +146,6 @@ namespace HackerRank1.Migrations
 
                     b.ToTable("Libraries");
                 });
-
-            modelBuilder.Entity("LibraryService.WebAPI.Data.User", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("integer");
-
-                NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                b.Property<string>("Cedula")
-                    .IsRequired()
-                    .HasColumnType("text");
-
-                b.Property<string>("Email")
-                    .IsRequired()
-                    .HasColumnType("text");
-
-                b.Property<string>("Name")
-                    .IsRequired()
-                    .HasColumnType("text");
-
-                b.Property<string>("Role")
-                    .IsRequired()
-                    .HasColumnType("text");
-
-                b.HasKey("Id");
-
-                b.ToTable("Users");
-            });
 
             modelBuilder.Entity("LibraryService.WebAPI.Data.Book", b =>
                 {

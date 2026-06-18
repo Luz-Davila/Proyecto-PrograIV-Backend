@@ -1,6 +1,7 @@
 ﻿using HackerRank1.DTO;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using HackerRank1.Entities;
 
 namespace LibraryService.WebAPI.Data
 {
@@ -78,7 +79,12 @@ namespace LibraryService.WebAPI.Data
         public DbSet<Library> Libraries { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Abonado> Abonados { get; set; }
+<<<<<<< HEAD
         public DbSet<Admin> Admins { get; set; }
+=======
+        public DbSet<Averia> Averias { get; set; }
+        public DbSet<InventarioItem> InventarioItems { get; set; }
+>>>>>>> aacc3572b0944fa35058ca055c78c64300b3b2e8
 
 
         // ── LÍNEA AGREGADA: Registramos tu tabla de Averías ──
