@@ -71,7 +71,7 @@ namespace LibraryService.WebAPI.Data
 
 
         // ── LÍNEA AGREGADA: Registramos tu tabla de Averías ──
-        public DbSet<Averia> Averias { get; set; }
+   
         public DbSet<User> Users { get; set; }
     }
 }
