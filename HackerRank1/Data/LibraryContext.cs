@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using HackerRank1.DTO;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace LibraryService.WebAPI.Data
@@ -44,6 +45,16 @@ namespace LibraryService.WebAPI.Data
         public string Estado { get; set; } = "Pendiente";
     }
 
+    public class User
+    {
+        [Key]
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Cedula { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Role { get; set; } = string.Empty;
+    }
+
     // ── DbContext ──────────────────────────────────────────────
     public class LibraryContext : DbContext
     {
@@ -55,7 +66,9 @@ namespace LibraryService.WebAPI.Data
         public DbSet<Book> Books { get; set; }
         public DbSet<Abonado> Abonados { get; set; }
 
+
         // ── LÍNEA AGREGADA: Registramos tu tabla de Averías ──
         public DbSet<Averia> Averias { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
