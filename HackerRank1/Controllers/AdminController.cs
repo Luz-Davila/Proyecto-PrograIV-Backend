@@ -31,5 +31,23 @@ namespace LibraryService.WebAPI.Controllers
             if (user == null) return NotFound();
             return Ok(user);
         }
+        // PUT: api/admin/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] SystemUser updatedUser)
+        {
+            var user = await _context.Users.FindAsync(id);
+
+            if (user == null)
+                return NotFound();
+
+            user.Name = updatedUser.Name;
+            user.Cedula = updatedUser.Cedula;
+            user.Email = updatedUser.Email;
+            user.Role = updatedUser.Role;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(user);
+        }
     }
 }
