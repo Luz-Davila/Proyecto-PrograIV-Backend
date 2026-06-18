@@ -2,6 +2,7 @@
 using LibraryService.WebAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HackerRank1.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    partial class LibraryContextModelSnapshot : ModelSnapshot
+    [Migration("20260618003125_AddUsersTable")]
+    partial class AddUsersTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,45 +23,6 @@ namespace HackerRank1.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("HackerRank1.Entities.InventarioItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("Activo")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("Cantidad")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Categoria")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Estado")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Imagen")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Uso")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("InventarioItems");
-                });
 
             modelBuilder.Entity("LibraryService.WebAPI.Data.Abonado", b =>
                 {
@@ -201,7 +165,6 @@ namespace HackerRank1.Migrations
 
                 b.ToTable("Users");
             });
-
             modelBuilder.Entity("LibraryService.WebAPI.Data.Book", b =>
                 {
                     b.HasOne("LibraryService.WebAPI.Data.Library", "Library")
