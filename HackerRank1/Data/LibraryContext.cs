@@ -56,6 +56,19 @@ namespace LibraryService.WebAPI.Data
         public string Role { get; set; } = string.Empty;
     }
 
+    public class Admin
+    {
+        [Key]
+        public int Id { get; set; }
+
+        public string Name { get; set; } = string.Empty;
+
+        public string Cedula { get; set; } = string.Empty;
+
+        public string Email { get; set; } = string.Empty;
+
+        public string Role { get; set; } = string.Empty;
+    }
     // ── DbContext ──────────────────────────────────────────────
     public class LibraryContext : DbContext
     {
@@ -66,8 +79,12 @@ namespace LibraryService.WebAPI.Data
         public DbSet<Library> Libraries { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Abonado> Abonados { get; set; }
+<<<<<<< HEAD
+        public DbSet<Admin> Admins { get; set; }
+=======
         public DbSet<Averia> Averias { get; set; }
         public DbSet<InventarioItem> InventarioItems { get; set; }
+>>>>>>> aacc3572b0944fa35058ca055c78c64300b3b2e8
 
 
         // ── LÍNEA AGREGADA: Registramos tu tabla de Averías ──
